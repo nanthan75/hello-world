@@ -3,20 +3,21 @@ import random
 import time
 
 points = 0
+#FOOD START
 food = turtle.Turtle()
 food.color("blue")
+food.goto(100,100)
 while True:
     food.shape("turtle")
-    time.sleep(1)
+    time.sleep(0.4)
     food.shape("arrow")
-    time.sleep(1)
+    time.sleep(0.2)
     food.shape("circle")
-    time.sleep(1)
+    time.sleep(0.3)
     break
-food.showturtle()
+
 food.penup()
 
-pointurtle = turtle.Turtle
 
 screen = turtle.Screen()
 screen.screensize(400, 400)
@@ -27,18 +28,17 @@ turn_speed = 12
 turtle.penup()
 
 
-def forward(): turtle.forward(move_speed)
-
-
+#FOOD CATCH
 def catch():
     global points
-    nearby = (abs(food.xcor() - turtle.xcor()) < 8) and (abs(food.ycor() - turtle.ycor()) < 8)
+    nearby = (abs(food.xcor() - turtle.xcor()) < 12) and (abs(food.ycor() - turtle.ycor()) < 12)
     if nearby:
         food.goto(random.randint(-400, 0), random.randint(0, 400))
         points = points + 1
         screen.title(points)
 
 
+#CONTROLS
 def forward():
     turtle.forward(move_speed)
     catch()
