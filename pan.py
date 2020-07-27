@@ -2,11 +2,30 @@ import turtle
 import random
 import time
 
+turtle.screensize(600, 600)
 points = 0
-#FOOD START
+
+# BORDER
+bor = turtle.Turtle()
+bor.hideturtle()
+bor.penup()
+bor.goto(-300, 0)
+bor.pendown()
+bor.left(90)
+bor.forward(300)
+bor.right(90)
+bor.forward(600)
+bor.right(90)
+bor.forward(600)
+bor.right(90)
+bor.forward(600)
+bor.right(90)
+bor.forward(300)
+
+# FOOD START
 food = turtle.Turtle()
 food.color("blue")
-food.goto(100,100)
+food.goto(100, 100)
 while True:
     food.shape("turtle")
     time.sleep(0.4)
@@ -18,7 +37,6 @@ while True:
 
 food.penup()
 
-
 screen = turtle.Screen()
 screen.screensize(400, 400)
 
@@ -28,17 +46,17 @@ turn_speed = 12
 turtle.penup()
 
 
-#FOOD CATCH
+# FOOD CATCH
 def catch():
     global points
     nearby = (abs(food.xcor() - turtle.xcor()) < 12) and (abs(food.ycor() - turtle.ycor()) < 12)
     if nearby:
-        food.goto(random.randint(-400, 0), random.randint(0, 400))
+        food.goto(random.randint(-200, 0), random.randint(0, -200))
         points = points + 1
         screen.title(points)
 
 
-#CONTROLS
+# CONTROLS
 def forward():
     turtle.forward(move_speed)
     catch()
