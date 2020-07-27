@@ -1,12 +1,14 @@
 import turtle
 import random
 import time
+from numpy import sign
 
 turtle.screensize(600, 600)
-points = 0
-
+points = 1
+turtle.turtlesize(1)
 # BORDER
 bor = turtle.Turtle()
+bor.color("blue")
 bor.hideturtle()
 bor.penup()
 bor.goto(-300, 0)
@@ -24,7 +26,7 @@ bor.forward(300)
 
 # FOOD START
 food = turtle.Turtle()
-food.color("blue")
+food.color("green")
 food.goto(100, 100)
 while True:
     food.shape("turtle")
@@ -38,23 +40,37 @@ while True:
 food.penup()
 
 screen = turtle.Screen()
-screen.screensize(400, 400)
+screen.screensize(600, 600)
 
 move_speed = 12
 turn_speed = 12
 
 turtle.penup()
-
+screen.bgcolor("lightgreen")
 
 # FOOD CATCH
 def catch():
     global points
+
+    x = turtle.xcor()
+    y = turtle.ycor()
+    x = sign(x)*300 if abs(x)>300 else x
+    y = sign(y) * 300 if abs(y) > 300 else y
+    turtle.goto(x,y)
     nearby = (abs(food.xcor() - turtle.xcor()) < 12) and (abs(food.ycor() - turtle.ycor()) < 12)
     if nearby:
-        food.goto(random.randint(-200, 0), random.randint(0, -200))
-        points = points + 1
-        screen.title(points)
+        x = random.randint(-300, 300)
+        y = random.randint(-300, 300)
 
+        print('going to',x,y)
+        food.goto(x,y )
+        points = points + 1
+        turtle.turtlesize(points)
+
+
+bor.color('orange')
+style = ('Courier', 30, 'italic')
+bor.write('POINTS:', points, font=style, align='right')
 
 # CONTROLS
 def forward():
