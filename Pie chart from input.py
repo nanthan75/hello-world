@@ -1,16 +1,10 @@
-import matplotlib.pyplot as plot
+import matplotlib.pyplot as plt
+input_str = input('input variables in the following way: var1, val1, var2,val2,.....')
 
-# is it possible to ask how many variables, then according to that, give input for that number of variables?
-a = input_str=input('input variables in the following way\n name1,value1,name2,value2,....')
-a.split(',')
+data = input_str.split(',')
+labels = data[0:-1:2]
+values = data [1::2]
+print("look at taskbar for matplotlib chart")
+plt.pie(values, labels=labels, startangle=90, autopct='%1.1f%%')
 
-figureObject, axesObject = plot.subplots()
-# Draw the pie chart
-axesObject.pie(a,
-               labels=a,
-               autopct='%1.2f',
-               startangle=90)
-axesObject.axis('equal')
-
-plot.show()
-#i
+plt.axis('equal')
